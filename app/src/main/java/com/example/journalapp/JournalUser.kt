@@ -14,6 +14,7 @@ class JournalUser:Application() {
                 }
                 return field
             }
+            private set
 
     }
 }

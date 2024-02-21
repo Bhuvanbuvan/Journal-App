@@ -6,29 +6,32 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.journalapp.Journal
 import com.example.journalapp.databinding.JournalItemBinding
+import com.squareup.picasso.Picasso
 
-class JournalAdapter(val context: Context,val journalList:List<Journal>)
-    :RecyclerView.Adapter<JournalAdapter.MyViewHolder>() {
+class JournalAdapter(val context: Context, val journalList: List<Journal>) :
+    RecyclerView.Adapter<JournalAdapter.MyViewHolder>() {
 
-        private lateinit var binding: JournalItemBinding
+    private lateinit var binding: JournalItemBinding
 
 
-     class MyViewHolder(private var inbinding: JournalItemBinding):RecyclerView.ViewHolder(inbinding.root){
+    class MyViewHolder(private var inbinding: JournalItemBinding) :
+        RecyclerView.ViewHolder(inbinding.root) {
         fun bind(currentItem: Journal) {
-            inbinding.journal=currentItem
+            inbinding.journal = currentItem
+            Picasso.get().load(currentItem.imageUrl).into(inbinding.journalImageView)
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
-        binding= JournalItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding = JournalItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem=journalList[position]
+        val currentItem = journalList[position]
         holder.bind(currentItem)
 
     }

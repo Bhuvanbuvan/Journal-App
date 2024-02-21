@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".JournalUser"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,16 +15,16 @@
         android:theme="@style/Theme.JournalApp"
         tools:targetApi="31">
         <activity
-            android:name=".Journal_Activity"
+            android:name=".activitiy.NewJournal_Activity"
             android:exported="false" />
         <activity
-            android:name=".JournalListActivity"
+            android:name=".activitiy.JournalListActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activitiy.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activitiy.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

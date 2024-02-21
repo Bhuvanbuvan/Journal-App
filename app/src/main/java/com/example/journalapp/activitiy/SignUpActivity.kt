@@ -1,10 +1,11 @@
-package com.example.journalapp
+package com.example.journalapp.activitiy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.journalapp.R
 import com.example.journalapp.databinding.ActivitySignUpBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -16,7 +17,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var firebaseAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
+        binding=DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         firebaseAuth=Firebase.auth
 
         binding.signuploginbtn.setOnClickListener {
