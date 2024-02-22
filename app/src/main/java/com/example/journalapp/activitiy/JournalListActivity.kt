@@ -53,10 +53,16 @@ class JournalListActivity : AppCompatActivity() {
 
         //Post Array list
         jornalList = arrayListOf<Journal>()
+
+        binding.flothingbnt.setOnClickListener {
+            val intent = Intent(this, NewJournal_Activity::class.java)
+            startActivity(intent)
+        }
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menu?.clear()
         menuInflater.inflate(R.menu.mymenu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -64,19 +70,15 @@ class JournalListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_add -> {
-                if (user != null && firebaseAuth != null) {
-                    val intent = Intent(this@JournalListActivity, NewJournal_Activity::class.java)
-                    startActivity(intent)
-                }
+                val intent = Intent(this, NewJournal_Activity::class.java)
+                startActivity(intent)
             }
 
             R.id.action_signout -> {
-                if (user != null && firebaseAuth != null) {
-                    firebaseAuth.signOut()
+                firebaseAuth.signOut()
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
         }
         return onOptionsItemSelected(item)

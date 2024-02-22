@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.journalapp.JournalUser
 import com.example.journalapp.R
 import com.example.journalapp.databinding.ActivitySignUpBinding
 import com.google.firebase.Firebase
@@ -35,8 +36,13 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAGY", "createUserWithEmail:success")
-                    val user = firebaseAuth.currentUser
-                    updateUI(user)
+
+                    var journal:JournalUser=JournalUser.instance!!
+
+                    journal.userId= firebaseAuth.currentUser?.uid.toString()
+                    journal.userName=firebaseAuth.currentUser?.displayName.toString()
+
+                    //updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAGY", "createUserWithEmail:failure", task.exception)
@@ -45,13 +51,15 @@ class SignUpActivity : AppCompatActivity() {
                         "Authentication failed.",
                         Toast.LENGTH_SHORT,
                     ).show()
-                    updateUI(null)
+                    var journal:JournalUser=JournalUser.instance!!
+                    journal.userId=null
+                    journal.userName=null
                 }
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-    }
+/*    private fun updateUI(user: FirebaseUser?) {
+    }*/
 
     public override fun onStart() {
         super.onStart()
